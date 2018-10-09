@@ -3,6 +3,7 @@ package dba
 import (
 	"database/sql"
 
+	"github.com/jonstacks/pg-dba/pkg/utils"
 	_ "github.com/lib/pq" // Import postgres db driver
 	"github.com/sirupsen/logrus"
 )
@@ -15,8 +16,11 @@ type DBA struct {
 }
 
 // New creates a new DBA and returns it
-func New(connStr string) *DBA {
-	return &DBA{connStr: connStr}
+func New(connStr string, verbose bool) *DBA {
+	return &DBA{
+		connStr: connStr,
+		verbose: verbose,
+	}
 }
 
 // Run runs the automatic DBA
@@ -46,6 +50,21 @@ func (dba *DBA) analyze() error {
 		cmd = "ANALYZE"
 	}
 
-	_, err := dba.db.Exec(cmd)
+	_, err := dba.exec(cmd)
 	return err
+}
+
+func (dba *DBA) exec(query string, args ...interface{}) (sql.Result, error) {
+	var err error
+	var result sql.Result
+
+	logrus.Infof("Running '%s'", query)
+	runTime := utils.Time(func() { result, err = dba.db.Exec(query, args...) })
+	context := logrus.WithFields(logrus.Fields{"duration": runTime.String()})
+	if err != nil {
+		context.Errorf("'%s' finished with error '%s'", query, err)
+	} else {
+		context.Infof("'%s' finished successfully", query)
+	}
+	return result, err
 }

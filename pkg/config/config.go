@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func envDefault(name, defaultValue string) string {
@@ -37,6 +38,12 @@ func DBPassword() string {
 // See https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters
 func SSLMode() string {
 	return envDefault("SSL_MODE", "require")
+}
+
+// Verbose returns whether or not we should run queries in verbose mode.
+// Default is false
+func Verbose() bool {
+	return strings.ToLower(envDefault("VERBOSE", "false")) == "true"
 }
 
 // DBConnectionString forms & returns the DBConnectionString

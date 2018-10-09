@@ -16,6 +16,6 @@ func fatal(err error) {
 }
 
 func main() {
-	admin := dba.New(config.DBConnectionString())
+	admin := dba.New(config.DBConnectionString(), config.Verbose())
 	fatal(admin.Run())
 }

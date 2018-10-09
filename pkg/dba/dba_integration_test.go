@@ -11,6 +11,6 @@ import (
 
 // Tests The automatic DBA
 func TestDBA(t *testing.T) {
-	dba := New(config.DBConnectionString())
+	dba := New(config.DBConnectionString(), config.Verbose())
 	assert.Nil(t, dba.Run())
 }
