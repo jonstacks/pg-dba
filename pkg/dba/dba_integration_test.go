@@ -12,7 +12,7 @@ import (
 // Tests The automatic DBA
 func TestDBA(t *testing.T) {
 	dba, err := New(config.DBConnectionString())
-	assert.Nil(err)
+	assert.Nil(t, err)
 
-	assert.Nil(dba.Run())
+	assert.Nil(t, dba.Run())
 }

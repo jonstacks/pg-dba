@@ -11,10 +11,10 @@ before_script:
 - psql -c 'create database pg_dba_test;' -U postgres
 
 env:
-- POSTGES_DB=pg_dba_test
-- POSTGES_HOST=postgres
-- POSTGRES_USER=postgres
-- POSTGRES_PASSWORD=""
+  global:
+  - POSTGES_DB=pg_dba_test
+  - POSTGES_HOST=postgres
+  - POSTGRES_USER=postgres
 
 install:
 - go get -u github.com/golang/dep/...
@@ -26,4 +26,4 @@ notifications:
 
 script:
 - go build ./cmd/pg-dba/...
-- go test -v -tags=integration  # Run integration tests
+- go test -v -tags=integration ./pkg/dba/... # Run integration tests
