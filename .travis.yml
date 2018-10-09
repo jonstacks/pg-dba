@@ -1,0 +1,29 @@
+language: go
+
+go:
+- "1.9.x"
+- "1.10.x"
+
+services:
+- postgresql
+
+before_script:
+- psql -c 'create database pg_dba_test;' -U postgres
+
+env:
+- POSTGES_DB=pg_dba_test
+- POSTGES_HOST=postgres
+- POSTGRES_USER=postgres
+- POSTGRES_PASSWORD=""
+
+install:
+- go get -u github.com/golang/dep/...
+- dep ensure
+
+# Don't email me the results of the test runs.
+notifications:
+  email: false
+
+script:
+- go build ./cmd/pg-dba/...
+- go test -v -tags=integration  # Run integration tests
