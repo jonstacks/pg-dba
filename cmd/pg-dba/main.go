@@ -6,6 +6,7 @@ import (
 
 	"github.com/jonstacks/pg-dba/pkg/config"
 	"github.com/jonstacks/pg-dba/pkg/dba"
+	"github.com/sirupsen/logrus"
 )
 
 func fatal(err error) {
@@ -15,7 +16,14 @@ func fatal(err error) {
 	}
 }
 
+func init() {
+	logrus.SetLevel(config.LogLevel())
+	logrus.SetFormatter(config.LogFormat())
+}
+
 func main() {
-	admin := dba.New(config.DBConnectionString(), config.Verbose())
+	opts := dba.NewDefaultOptions()
+	opts.Verbose = config.Verbose()
+	admin := dba.New(config.DBConnectionString(), opts)
 	fatal(admin.Run())
 }
