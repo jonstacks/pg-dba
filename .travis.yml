@@ -9,6 +9,7 @@ services:
 
 before_script:
 - psql -c 'create database pg_dba_test;' -U postgres
+- cat test-schema.sql | psql -U postgres > /dev/null
 
 env:
   global:

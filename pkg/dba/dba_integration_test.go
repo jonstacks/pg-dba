@@ -10,7 +10,9 @@ import (
 )
 
 // Tests The automatic DBA
-func TestDBA(t *testing.T) {
-	dba := New(config.DBConnectionString(), config.Verbose())
+func TestDBACase1(t *testing.T) {
+	opts := NewDefaultOptions()
+	opts.Verbose = config.Verbose()
+	dba := New(config.DBConnectionString(), opts)
 	assert.Nil(t, dba.Run())
 }
