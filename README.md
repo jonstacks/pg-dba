@@ -1,6 +1,7 @@
 # pg-dba
-A semi-automated Postgres DBA for helping teams better manage their DB
+[![Build Status](https://travis-ci.org/jonstacks/pg-dba.svg?branch=master)](https://travis-ci.org/jonstacks/pg-dba)
 
+A semi-automated Postgres DBA for helping teams better manage their DB.
 
 ## Testing
 
