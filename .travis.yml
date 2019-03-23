@@ -27,4 +27,7 @@ notifications:
 
 script:
 - go build ./cmd/pg-dba/...
-- go test -v -tags=integration ./pkg/dba/... # Run integration tests
+- go test -v -tags=integration -coverprofile=coverage.txt -covermode=atomic ./pkg/dba/... # Run integration tests
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
