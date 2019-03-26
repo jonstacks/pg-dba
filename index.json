@@ -1,0 +1,57 @@
+[
+{
+	"uri": "http://jonstacks.github.io/pg-dba/intro/",
+	"title": "Intro",
+	"tags": [],
+	"description": "",
+	"content": " Chapter 1 Intro Learn about pg-dba and what it does.\n"
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/intro/motivation/",
+	"title": "Motivation",
+	"tags": [],
+	"description": "",
+	"content": "The motivation for pg-dba is to automate Postgres administation. We often found that our tables were becoming bloated and the number of dead tuples was large despite our best efforts at using the auto_vacuum and auto_analyze features of postgres.\nFurthermore, we often found ourselves running a SQL script to find the tables that were bloated and then selectively running FULL VACUUM on them. Some tables are just too large to run a FULL VACUUM on since it would lock the table for too long and take down an app for too long.\nWith this in mind, we created pg-dba. While still in its infancy, it has helped to make the task of keeping our tables performing much easier and anyone on a team can run it without having to have much knowledge about what is happening under the hood. This program could even be run on a cron during a scheduled maintenance window to help keep your DB performing at its best.\n"
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/workflow/diagram/",
+	"title": "Diagram",
+	"tags": [],
+	"description": "",
+	"content": "Below is a simple diagram that shows the pg-dba workflow:\ngraph LR A[START] A -- B subgraph preanalyze B{\"PRE_ANALYZE=True?\"} B --|Yes| C[Run Analyze] end B --|No| D C -- D D[Run Query to check for table bloat] D--E[\"Vacuum table if bloated and not too large\"] E -- F subgraph postanalyze F{\"POST_ANALYZE=True?\"} F -- |Yes| G[Run Analyze] end F --|No| H G -- H H[STOP]  "
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/workflow/",
+	"title": "Workflow",
+	"tags": [],
+	"description": "",
+	"content": "This chapter covers the pg-dba workflow and includes a diagram for easy reference.\n"
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/configuration/",
+	"title": "Configuration",
+	"tags": [],
+	"description": "",
+	"content": " Chapter 3 Configuration Currently, the execution of pg-dba is configured with environment variables. Below is a list of the environment variables, their defaults, descriptions, and allowed values:\n   Environment Variable Default Value Description Allowed Values     POSTGRES_DB postgres The postgres DB *   POSTGRES_HOST localhost The postgres host *   POSTGRES_PASSWORD \u0026rdquo;\u0026rdquo; The postgres password *   POSTGRES_USER postgres The postgres user *   LOG_LEVEL info The level to output logs at debug, info, warn, error   POST_ANALYZE True Run an analyze after vacuum to update stats True, False   PRE_ANALYZE True Run an analyze to update stats before vacuum True, False   SSL_MODE require SSLMode for the connection. See https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters   VERBOSE False Run queries in VERBOSE mode True, False    "
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/",
+	"title": "Index",
+	"tags": [],
+	"description": "",
+	"content": "Welcome to the pg-dba Documentation. Please see the sections on the left to get started.\n"
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://jonstacks.github.io/pg-dba/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
