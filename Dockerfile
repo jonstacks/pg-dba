@@ -1,10 +1,9 @@
-FROM golang:alpine as builder
-WORKDIR /go/src/github.com/jonstacks/pg-dba
-RUN apk add git && \
-    go get -u github.com/golang/dep/cmd/dep
-COPY Gopkg.lock Gopkg.toml ./
-RUN dep ensure -v --vendor-only
-COPY . ./
+FROM golang:1.12-alpine as builder
+RUN apk add --no-cache git
+ENV GO111MODULE=on
+WORKDIR /pg-dba
+COPY . .
+RUN go get ./...
 RUN CGO_ENABLED=0 go build -v -o /usr/local/bin/pg-dba ./cmd/pg-dba/...
 
 FROM alpine
