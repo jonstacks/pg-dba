@@ -1,8 +1,9 @@
 language: go
 
 go:
-- "1.9.x"
-- "1.10.x"
+- "1.11.x"
+- "1.12.x"
+- "tip"
 
 services:
 - postgresql
@@ -13,13 +14,13 @@ before_script:
 
 env:
   global:
+  - GO111MODULE=on
   - POSTGES_DB=pg_dba_test
   - POSTGES_HOST=postgres
   - POSTGRES_USER=postgres
 
 install:
-- go get -u github.com/golang/dep/...
-- dep ensure
+- go get ./...
 
 # Don't email me the results of the test runs.
 notifications:
