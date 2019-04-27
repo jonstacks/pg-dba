@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/sirupsen/logrus"
@@ -29,6 +30,20 @@ func envDefault(name, defaultValue string) string {
 
 func lowerEnvDefault(name, defaultValue string) string {
 	return strings.ToLower(envDefault(name, defaultValue))
+}
+
+func envInt(name string, defaultValue int) (int, error) {
+	val := os.Getenv(name)
+	if val == "" {
+		return defaultValue, nil
+	}
+	return strconv.Atoi(val)
+}
+
+// AnalyzeTimeoutSeconds returns the number of seconds of how long pg-dba will
+// wait for an Analyze operation on the DB.
+func AnalyzeTimeoutSeconds() (int, error) {
+	return envInt("ANALYZE_TIMEOUT_SECONDS", 600)
 }
 
 // DBConnectionString forms & returns the DBConnectionString
@@ -60,6 +75,12 @@ func DBPassword() string {
 // DBUser returns the POSTGRES_USER if exists, otherwise postgres
 func DBUser() string {
 	return envDefault("POSTGRES_USER", "postgres")
+}
+
+// FullVacuumTimeoutSeconds returns the number of seconds of how long pg-dba will
+// wait for an Analyze operation on the DB.
+func FullVacuumTimeoutSeconds() (int, error) {
+	return envInt("FULL_VACUUM_TIMEOUT_SECONDS", 600)
 }
 
 // LogFormat returns a logrus.Formatter that can be used to configure the
@@ -104,6 +125,12 @@ func PreAnalyze() bool {
 // See https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters
 func SSLMode() string {
 	return envDefault("SSL_MODE", "require")
+}
+
+// VacuumTimeoutSeconds returns the number of seconds of how long pg-dba will
+// wait for a Vacuum operation on the DB.
+func VacuumTimeoutSeconds() (int, error) {
+	return envInt("VACUUM_TIMEOUT_SECONDS", 600)
 }
 
 // Verbose returns whether or not we should run queries in verbose mode.
