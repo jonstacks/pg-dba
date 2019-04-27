@@ -11,6 +11,12 @@ docker-image:
 			    -t jonstacks/pg-dba:latest \
 			    --build-arg PG_DBA_VERSION=$(VERSION) .
 
+unit-tests:
+	go test -v -coverprofile=coverage.txt -covermode=atomic ./...
+
+integration-tests:
+	go test -v -tags=integration -coverprofile=coverage.txt -covermode=atomic ./...
+
 doc-server:
 	$(MAKE) -C docs doc-server
 
