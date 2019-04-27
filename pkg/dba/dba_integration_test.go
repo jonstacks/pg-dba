@@ -25,7 +25,7 @@ func TestDBANonVerbose(t *testing.T) {
 	assert.Nil(t, dba.Run())
 }
 
-func TestDBATimeout(t *testing.T) {
+func TestDBAAnalyzeTimeout(t *testing.T) {
 	opts := NewDefaultOptions()
 	opts.AnalyzeTimeout = 50 * time.Millisecond
 	opts.Verbose = config.Verbose()
