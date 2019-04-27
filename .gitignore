@@ -16,3 +16,7 @@ vendor/
 
 # Code coverage
 coverage.txt
+integration-coverage.txt
+
+# Editor configurations
+.vscode/

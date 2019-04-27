@@ -20,6 +20,7 @@ env:
   - POSTGRES_USER=postgres
 
 install:
+- go install github.com/wadey/gocovmerge
 - go get ./...
 
 # Don't email me the results of the test runs.
@@ -28,7 +29,7 @@ notifications:
 
 script:
 - go build ./cmd/pg-dba/...
-- make integration-tests
+- make test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
