@@ -1,0 +1,21 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## [Unreleased]
+
+## [0.3.0] - 2021-07-03
+
+### Added
+
+- Environment variable to configure bloat query timeout
+- CHANGELOD.md
+
+### Changed
+
+- Postgres version in docker-compose.yaml
+- Golang to 1.15
+- Updated documentation

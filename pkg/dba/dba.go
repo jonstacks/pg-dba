@@ -17,6 +17,8 @@ type Options struct {
 	AnalyzeTimeout time.Duration
 	PostAnalyze    bool
 
+	BloatQueryTimeout time.Duration
+
 	PreVacuum    bool
 	VacuumTimout time.Duration
 
@@ -34,6 +36,8 @@ func NewDefaultOptions() Options {
 		PreAnalyze:     true,
 		AnalyzeTimeout: 10 * time.Minute,
 		PostAnalyze:    true,
+
+		BloatQueryTimeout: 5 * time.Minute,
 
 		PreVacuum:    false,
 		VacuumTimout: 10 * time.Minute,
@@ -161,9 +165,10 @@ func (dba *DBA) vacuum(analyze bool) error {
 }
 
 func (dba *DBA) bloatedTables() ([]TableBloatResult, error) {
+	logrus.Info("Running table bloat query")
 	results := make([]TableBloatResult, 0)
 	query := TableBloatQuery(dba.options.FullVacuumBloatPercent)
-	ctx, cancel := context.WithTimeout(context.Background(), dba.options.Timeout)
+	ctx, cancel := context.WithTimeout(context.Background(), dba.options.BloatQueryTimeout)
 	defer cancel()
 	rows, err := dba.queryContext(ctx, query)
 	if err != nil {

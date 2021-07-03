@@ -1,4 +1,4 @@
-FROM golang:1.12-alpine as builder
+FROM golang:1.15-alpine as builder
 RUN apk add --no-cache git
 ENV GO111MODULE=on
 WORKDIR /pg-dba
