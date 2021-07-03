@@ -78,7 +78,7 @@ func DBUser() string {
 }
 
 // FullVacuumTimeoutSeconds returns the number of seconds of how long pg-dba will
-// wait for an Analyze operation on the DB.
+// wait for an Full Vacuum operation on the DB.
 func FullVacuumTimeoutSeconds() (int, error) {
 	return envInt("FULL_VACUUM_TIMEOUT_SECONDS", 600)
 }
@@ -137,4 +137,10 @@ func VacuumTimeoutSeconds() (int, error) {
 // Default is false
 func Verbose() bool {
 	return envBool("VERBOSE", false)
+}
+
+// BloatQueryTimeoutSeconds returns the number of seconds of how long
+// pg-dba will wait for the bloat query operation on the DB.
+func BloatQueryTimeoutSeconds() (int, error) {
+	return envInt("BLOAT_QUERY_TIMEOUT_SECONDS", 300)
 }

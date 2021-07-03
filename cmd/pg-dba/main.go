@@ -33,10 +33,14 @@ func main() {
 	fullVacuumTimeoutSecs, err := config.FullVacuumTimeoutSeconds()
 	fatal(err)
 
+	bloatQueryTimeoutSecs, err := config.BloatQueryTimeoutSeconds()
+	fatal(err)
+
 	opts := dba.NewDefaultOptions()
 	opts.AnalyzeTimeout = time.Duration(analyzeTimeoutSecs) * time.Second
 	opts.VacuumTimout = time.Duration(vacuumTimeoutSecs) * time.Second
-	opts.FullVacuumTimeout = time.Duration(fullVacuumTimeoutSecs)
+	opts.FullVacuumTimeout = time.Duration(fullVacuumTimeoutSecs) * time.Second
+	opts.BloatQueryTimeout = time.Duration(bloatQueryTimeoutSecs) * time.Second
 	opts.Verbose = config.Verbose()
 	admin := dba.New(config.DBConnectionString(), opts)
 	fatal(admin.Run())
