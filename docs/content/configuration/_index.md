@@ -15,17 +15,18 @@ Below is a list of the environment variables, their defaults, descriptions,
 and allowed values:
 
 
-| Environment Variable        | Default Value | Description                                       | Allowed Values                                                            |
-|-----------------------------|---------------|---------------------------------------------------|---------------------------------------------------------------------------|
-| ANALYZE_TIMEOUT_SECONDS     | 600           | The time in seconds before stopping an analyze    | Integer greater than 0                                                    |
-| FULL_VACUUM_TIMEOUT_SECONDS | 600           | The time in seconds before stopping a full vacuum | Integer greater than 0                                                    |
-| POSTGRES_DB                 | postgres      | The postgres DB                                   | `*`                                                                       |
-| POSTGRES_HOST               | localhost     | The postgres host                                 | `*`                                                                       |
-| POSTGRES_PASSWORD           | ""            | The postgres password                             | `*`                                                                       |
-| POSTGRES_USER               | postgres      | The postgres user                                 | `*`                                                                       |
-| LOG_LEVEL                   | info          | The level to output logs at                       | debug, info, warn, error                                                  |
-| POST_ANALYZE                | True          | Run an analyze after vacuum to update stats       | True, False                                                               |
-| PRE_ANALYZE                 | True          | Run an analyze to update stats before vacuum      | True, False                                                               |
-| SSL_MODE                    | require       | SSLMode for the connection.                       | See https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters  |
-| VERBOSE                     | False         | Run queries in VERBOSE mode                       | True, False                                                               |
-| VACUUM_TIMEOUT_SECONDS      | 600           | The time in seconds before stopping a vacuum      | Integer greater than 0                                                    |
+| Environment Variable            | Default Value | Description                                       | Allowed Values                                                            |
+|---------------------------------|---------------|---------------------------------------------------|---------------------------------------------------------------------------|
+| ANALYZE_TIMEOUT_SECONDS         | 600           | The time in seconds before stopping an analyze    | Integer greater than 0                                                    |
+| BLOAT_QUERY_TIMEOUT_SECONDS     | 30            | The time in seconds before stopping bloat query   | Integer greater than 0                                                    |
+| FULL_VACUUM_TIMEOUT_SECONDS     | 600           | The time in seconds before stopping a full vacuum | Integer greater than 0                                                    |
+| POSTGRES_DB                     | postgres      | The postgres DB                                   | `*`                                                                       |
+| POSTGRES_HOST                   | localhost     | The postgres host                                 | `*`                                                                       |
+| POSTGRES_PASSWORD               | ""            | The postgres password                             | `*`                                                                       |
+| POSTGRES_USER                   | postgres      | The postgres user                                 | `*`                                                                       |
+| LOG_LEVEL                       | info          | The level to output logs at                       | debug, info, warn, error                                                  |
+| POST_ANALYZE                    | True          | Run an analyze after vacuum to update stats       | True, False                                                               |
+| PRE_ANALYZE                     | True          | Run an analyze to update stats before vacuum      | True, False                                                               |
+| SSL_MODE                        | require       | SSLMode for the connection.                       | See https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters  |
+| VERBOSE                         | False         | Run queries in VERBOSE mode                       | True, False                                                               |
+| VACUUM_TIMEOUT_SECONDS          | 600           | The time in seconds before stopping a vacuum      | Integer greater than 0                                                    |

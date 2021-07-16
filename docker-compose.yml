@@ -1,6 +1,6 @@
 version: '3'
 services:
   db:
-    image: postgres:9.2
+    image: postgres:12
     ports:
     - "5432:5432"
