@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Moved to GitHub Actions for CI.
 - Postgres version in docker-compose.yaml
-- Golang to 1.15
+- Golang to 1.16
 - Updated documentation

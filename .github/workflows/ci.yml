@@ -1,0 +1,46 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    name: Go ${{ matrix.go }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go:
+        - '1.16'
+      fail-fast: false
+    timeout-minutes: 10
+    env:
+      POSTGES_DB: pg_dba_test
+      POSTGES_HOST: "127.0.0.1"
+      POSTGRES_USER: postgres
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+    - name: Install coverage merging tool
+      run: go install github.com/wadey/gocovmerge@latest
+    - name: Start Postgres # TODO: Come back and get rid of the sleep with a health check
+      run: |
+        docker-compose up -d
+        sleep 15
+    - name: Seed DB
+      env:
+        PGHOST: "127.0.0.1"
+        PGUSER: postgres
+      run: |
+        psql -c 'create database pg_dba_test;'
+        cat test-schema.sql | psql > /dev/null
+    - name: Run Tests
+      run: make test
+    - name: Upload Coverage
+      run: bash <(curl -s https://codecov.io/bash)
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build -t pg-dba .

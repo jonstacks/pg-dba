@@ -2,5 +2,7 @@ version: '3'
 services:
   db:
     image: postgres:12
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
     - "5432:5432"

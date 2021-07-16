@@ -1,9 +1,7 @@
 FROM golang:1.16-alpine as builder
 RUN apk add --no-cache git
-ENV GO111MODULE=on
 WORKDIR /pg-dba
 COPY . .
-RUN go get ./...
 RUN CGO_ENABLED=0 go build -v -o /usr/local/bin/pg-dba ./cmd/pg-dba/...
 
 FROM alpine
