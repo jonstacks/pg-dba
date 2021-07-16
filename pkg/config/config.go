@@ -142,5 +142,5 @@ func Verbose() bool {
 // BloatQueryTimeoutSeconds returns the number of seconds of how long
 // pg-dba will wait for the bloat query operation on the DB.
 func BloatQueryTimeoutSeconds() (int, error) {
-	return envInt("BLOAT_QUERY_TIMEOUT_SECONDS", 300)
+	return envInt("BLOAT_QUERY_TIMEOUT_SECONDS", 30)
 }

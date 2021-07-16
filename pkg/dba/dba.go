@@ -37,7 +37,7 @@ func NewDefaultOptions() Options {
 		AnalyzeTimeout: 10 * time.Minute,
 		PostAnalyze:    true,
 
-		BloatQueryTimeout: 5 * time.Minute,
+		BloatQueryTimeout: 30 * time.Second,
 
 		PreVacuum:    false,
 		VacuumTimout: 10 * time.Minute,

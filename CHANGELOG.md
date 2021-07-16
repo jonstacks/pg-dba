@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Environment variable to configure bloat query timeout
-- CHANGELOD.md
+- CHANGELOG.md
 
 ### Changed
 
