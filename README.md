@@ -1,6 +1,5 @@
 # pg-dba
-[![Build 
-Status](https://travis-ci.org/jonstacks/pg-dba.svg?branch=master)](https://travis-ci.org/jonstacks/pg-dba) 
+[![CI](https://github.com/jonstacks/pg-dba/actions/workflows/ci.yml/badge.svg)](https://github.com/jonstacks/pg-dba/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/jonstacks/pg-dba/branch/master/graph/badge.svg)](https://codecov.io/gh/jonstacks/pg-dba)
 
 A semi-automated Postgres DBA for helping teams better manage their DB.
