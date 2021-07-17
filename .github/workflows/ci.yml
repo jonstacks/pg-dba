@@ -44,3 +44,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: docker build -t pg-dba .
+
+  docs:
+    name: Test Documentation Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@v2
+    - run: make build-doc-server
+      working-directory: docs

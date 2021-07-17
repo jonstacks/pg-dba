@@ -14,3 +14,11 @@ the integration tests by running:
 make compose-up
 make integration
 ```
+
+## Docs
+
+You can run the docs server by going to the `docs` folder and running:
+
+```
+make doc-server
+```
