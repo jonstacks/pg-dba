@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 
+	_ "github.com/joho/godotenv/autoload" // Automatically load a .env file if present
 	"github.com/jonstacks/pg-dba/pkg/config"
 	"github.com/jonstacks/pg-dba/pkg/dba"
 	"github.com/sirupsen/logrus"
@@ -42,6 +43,8 @@ func main() {
 	opts.FullVacuumTimeout = time.Duration(fullVacuumTimeoutSecs) * time.Second
 	opts.BloatQueryTimeout = time.Duration(bloatQueryTimeoutSecs) * time.Second
 	opts.Verbose = config.Verbose()
+	opts.PreAnalyze = config.PreAnalyze()
+	opts.PostAnalyze = config.PostAnalyze()
 	admin := dba.New(config.DBConnectionString(), opts)
 	fatal(admin.Run())
 }

@@ -59,22 +59,22 @@ func DBConnectionString() string {
 
 // DBHost returns the POSTGRES_HOST if exists, otherwise localhost
 func DBHost() string {
-	return envDefault("POSTGRES_HOST", "localhost")
+	return envDefault("PGHOST", envDefault("POSTGRES_HOST", "localhost"))
 }
 
 // DBName returns the POSTGRES_DB if exists, otherwise postgres
 func DBName() string {
-	return envDefault("POSTGRES_DB", "postgres")
+	return envDefault("PGDATABASE", envDefault("POSTGRES_DB", "postgres"))
 }
 
 // DBPassword returns the POSTGRES_PASSWORD if exists, otherwise ""
 func DBPassword() string {
-	return envDefault("POSTGRES_PASSWORD", "\"\"")
+	return envDefault("PGPASSWORD", envDefault("POSTGRES_PASSWORD", "\"\""))
 }
 
 // DBUser returns the POSTGRES_USER if exists, otherwise postgres
 func DBUser() string {
-	return envDefault("POSTGRES_USER", "postgres")
+	return envDefault("PGUSER", envDefault("POSTGRES_USER", "postgres"))
 }
 
 // FullVacuumTimeoutSeconds returns the number of seconds of how long pg-dba will
@@ -124,7 +124,7 @@ func PreAnalyze() bool {
 // SSLMode returns the SSL_MODE if exists, otherwise the default of require.
 // See https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters
 func SSLMode() string {
-	return envDefault("SSL_MODE", "require")
+	return envDefault("PGSSLMODE", envDefault("SSL_MODE", "require"))
 }
 
 // VacuumTimeoutSeconds returns the number of seconds of how long pg-dba will

@@ -3,6 +3,7 @@ module github.com/jonstacks/pg-dba
 go 1.16
 
 require (
+	github.com/joho/godotenv v1.4.0
 	github.com/konsorten/go-windows-terminal-sequences v1.0.1 // indirect
 	github.com/lib/pq v1.0.0
 	github.com/sirupsen/logrus v1.1.1
