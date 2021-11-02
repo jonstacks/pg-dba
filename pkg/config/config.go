@@ -91,7 +91,9 @@ func LogFormat() logrus.Formatter {
 	case "json":
 		return &logrus.JSONFormatter{}
 	}
-	return &logrus.TextFormatter{}
+	return &logrus.TextFormatter{
+		FullTimestamp: true,
+	}
 }
 
 // LogLevel Returns the logrus log level to use. Defaults to Info
