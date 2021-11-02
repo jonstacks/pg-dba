@@ -10,6 +10,20 @@ pre: "<b>3. </b>"
 
 # Configuration
 
+Starting in version `0.4.0`, pg-dba will automatically read a `.env` file if one
+is present in the current directory. Also starting in version `0.4.0`, pgdba respects
+and prioritizes the following postgres environment variables over the old ones:
+
+```
+| Postgres Environment Variable | Old Environment Variable |
+| ------------------------------|--------------------------|
+| PGHOST                        | POSTGRES_HOST            |
+| PGUSER                        | POSTGRES_USER            |
+| PGDATABASE                    | POSTGRES_DB              |
+| PGPASSWORD                    | POSTGRES_PASSWORD        |
+| PGSSLMODE                     | SSL_MODE                 |
+```
+
 Currently, the execution of pg-dba is configured with environment variables.
 Below is a list of the environment variables, their defaults, descriptions,
 and allowed values:
