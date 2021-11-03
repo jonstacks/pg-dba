@@ -13,19 +13,19 @@
     <title>Configuration :: pg-dba</title>
     
     
-    <link href="/pg-dba/css/nucleus.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/font-awesome.min.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/hybrid.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/featherlight.min.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/perfect-scrollbar.min.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/auto-complete.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/theme.css?1626492618" rel="stylesheet">
-    <link href="/pg-dba/css/hugo-theme.css?1626492618" rel="stylesheet">
+    <link href="/pg-dba/css/nucleus.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/font-awesome.min.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/hybrid.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/featherlight.min.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/perfect-scrollbar.min.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/auto-complete.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/theme.css?1635954915" rel="stylesheet">
+    <link href="/pg-dba/css/hugo-theme.css?1635954915" rel="stylesheet">
     
-      <link href="/pg-dba/css/theme-blue.css?1626492618" rel="stylesheet">
+      <link href="/pg-dba/css/theme-blue.css?1635954915" rel="stylesheet">
     
 
-    <script src="/pg-dba/js/jquery-2.x.min.js?1626492618"></script>
+    <script src="/pg-dba/js/jquery-2.x.min.js?1635954915"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/pg-dba/js/lunr.min.js?1626492618"></script>
-<script type="text/javascript" src="/pg-dba/js/auto-complete.js?1626492618"></script>
+<script type="text/javascript" src="/pg-dba/js/lunr.min.js?1635954915"></script>
+<script type="text/javascript" src="/pg-dba/js/auto-complete.js?1635954915"></script>
 <script type="text/javascript">
     
         var baseurl = '\/pg-dba\/';
     
 </script>
-<script type="text/javascript" src="/pg-dba/js/search.js?1626492618"></script>
+<script type="text/javascript" src="/pg-dba/js/search.js?1635954915"></script>
 
     
   </div>
@@ -288,6 +288,19 @@
 <h3 id="chapter-3">Chapter 3</h3>
 
 <h1 id="configuration">Configuration</h1>
+
+<p>Starting in version <code>0.4.0</code>, pg-dba will automatically read a <code>.env</code> file if one
+is present in the current directory. Also starting in version <code>0.4.0</code>, pgdba respects
+and prioritizes the following postgres environment variables over the old ones:</p>
+
+<pre><code>| Postgres Environment Variable | Old Environment Variable |
+| ------------------------------|--------------------------|
+| PGHOST                        | POSTGRES_HOST            |
+| PGUSER                        | POSTGRES_USER            |
+| PGDATABASE                    | POSTGRES_DB              |
+| PGPASSWORD                    | POSTGRES_PASSWORD        |
+| PGSSLMODE                     | SSL_MODE                 |
+</code></pre>
 
 <p>Currently, the execution of pg-dba is configured with environment variables.
 Below is a list of the environment variables, their defaults, descriptions,
@@ -533,20 +546,20 @@ and allowed values:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/pg-dba/js/clipboard.min.js?1626492618"></script>
-    <script src="/pg-dba/js/perfect-scrollbar.min.js?1626492618"></script>
-    <script src="/pg-dba/js/perfect-scrollbar.jquery.min.js?1626492618"></script>
-    <script src="/pg-dba/js/jquery.sticky.js?1626492618"></script>
-    <script src="/pg-dba/js/featherlight.min.js?1626492618"></script>
-    <script src="/pg-dba/js/html5shiv-printshiv.min.js?1626492618"></script>
-    <script src="/pg-dba/js/highlight.pack.js?1626492618"></script>
+    <script src="/pg-dba/js/clipboard.min.js?1635954915"></script>
+    <script src="/pg-dba/js/perfect-scrollbar.min.js?1635954915"></script>
+    <script src="/pg-dba/js/perfect-scrollbar.jquery.min.js?1635954915"></script>
+    <script src="/pg-dba/js/jquery.sticky.js?1635954915"></script>
+    <script src="/pg-dba/js/featherlight.min.js?1635954915"></script>
+    <script src="/pg-dba/js/html5shiv-printshiv.min.js?1635954915"></script>
+    <script src="/pg-dba/js/highlight.pack.js?1635954915"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/pg-dba/js/modernizr.custom.71422.js?1626492618"></script>
-    <script src="/pg-dba/js/learn.js?1626492618"></script>
-    <script src="/pg-dba/js/hugo-learn.js?1626492618"></script>
+    <script src="/pg-dba/js/modernizr.custom.71422.js?1635954915"></script>
+    <script src="/pg-dba/js/learn.js?1635954915"></script>
+    <script src="/pg-dba/js/hugo-learn.js?1635954915"></script>
 
-    <link href="/pg-dba/mermaid/mermaid.css?1626492618" type="text/css" rel="stylesheet" />
-    <script src="/pg-dba/mermaid/mermaid.js?1626492618"></script>
+    <link href="/pg-dba/mermaid/mermaid.css?1635954915" type="text/css" rel="stylesheet" />
+    <script src="/pg-dba/mermaid/mermaid.js?1635954915"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
