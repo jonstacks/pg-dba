@@ -8,6 +8,7 @@ jobs:
       matrix:
         go:
         - '1.16'
+        - '1.17'
       fail-fast: false
     timeout-minutes: 10
     env:

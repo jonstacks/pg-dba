@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/jonstacks/pg-dba/pkg/utils"
@@ -70,7 +71,14 @@ func New(connStr string, opts Options) *DBA {
 func (dba *DBA) Run() error {
 	var err error
 
-	logrus.Info("Connecting to database")
+	connProps := dba.connectionProperties()
+	logrus.WithFields(logrus.Fields{
+		"host":    connProps["host"],
+		"dbname":  connProps["dbname"],
+		"user":    connProps["user"],
+		"sslmode": connProps["sslmode"],
+	}).Info("Connecting to database")
+
 	dba.db, err = sql.Open("postgres", dba.connStr)
 	if err != nil {
 		return err
@@ -165,7 +173,10 @@ func (dba *DBA) vacuum(analyze bool) error {
 }
 
 func (dba *DBA) bloatedTables() ([]TableBloatResult, error) {
-	logrus.Info("Running table bloat query")
+	logrus.WithFields(logrus.Fields{
+		"bloat_query_timeout":        dba.options.BloatQueryTimeout.String(),
+		"full_vaccuum_bloat_percent": dba.options.FullVacuumBloatPercent,
+	}).Info("Running table bloat query")
 	results := make([]TableBloatResult, 0)
 	query := TableBloatQuery(dba.options.FullVacuumBloatPercent)
 	ctx, cancel := context.WithTimeout(context.Background(), dba.options.BloatQueryTimeout)
@@ -212,4 +223,16 @@ func (dba *DBA) execContext(ctx context.Context, query string, args ...interface
 		logContext.Infof("'%s' finished successfully", query)
 	}
 	return result, err
+}
+
+func (dba *DBA) connectionProperties() map[string]string {
+	m := make(map[string]string)
+
+	for _, token := range strings.Split(dba.connStr, " ") {
+		parsed := strings.SplitN(token, "=", 2)
+		if len(parsed) == 2 {
+			m[parsed[0]] = parsed[1]
+		}
+	}
+	return m
 }

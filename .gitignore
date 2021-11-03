@@ -20,3 +20,6 @@ integration-coverage.txt
 
 # Editor configurations
 .vscode/
+
+# Local environment config
+.env
