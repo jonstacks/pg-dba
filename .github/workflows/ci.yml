@@ -37,6 +37,7 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         files: ./coverage.txt,./integration-coverage.txt
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   docker-build:
     name: Docker Build
