@@ -5,7 +5,7 @@ clean:
 	rm -rf integration-coverage.txt
 
 compose-up:
-	docker-compose up -d
+	docker compose up -d
 
 integration:
 	SSL_MODE=disable go test -v -tags=integration ./pkg/dba/...
@@ -17,7 +17,6 @@ docker-image:
 
 # Run the unit and integration tests and combine them.
 test: unit-tests integration-tests
-	gocovmerge coverage.txt integration-coverage.txt > coverage.txt
 
 unit-tests:
 	go test -v -coverprofile=coverage.txt -covermode=atomic ./...
