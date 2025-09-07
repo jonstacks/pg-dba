@@ -83,7 +83,7 @@ func (dba *DBA) Run() error {
 	if err != nil {
 		return err
 	}
-	defer dba.db.Close()
+	defer func() { _ = dba.db.Close() }()
 
 	if err = dba.db.Ping(); err != nil {
 		return err

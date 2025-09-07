@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine as builder
+FROM golang:1.24.6-alpine AS builder
 RUN apk add --no-cache git
 WORKDIR /pg-dba
 COPY . .

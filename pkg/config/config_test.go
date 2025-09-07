@@ -10,9 +10,9 @@ import (
 )
 
 func withEnvSet(key, value string, f func(key string)) {
-	os.Setenv(key, value)
+	_ = os.Setenv(key, value)
 	f(key)
-	os.Unsetenv(key)
+	_ = os.Unsetenv(key)
 }
 
 func testAllBoolVariable(t *testing.T, key string, defaultValue bool, f func() bool) {

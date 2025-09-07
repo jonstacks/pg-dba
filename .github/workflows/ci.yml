@@ -7,8 +7,8 @@ jobs:
     strategy:
       matrix:
         go:
-        - '1.19'
-        - '1.20'
+        - '1.24'
+        - '1.25'
       fail-fast: false
     timeout-minutes: 10
     env:
@@ -16,15 +16,13 @@ jobs:
       POSTGES_HOST: "127.0.0.1"
       POSTGRES_USER: postgres
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v3
+    - uses: actions/checkout@v5
+    - uses: actions/setup-go@v6
       with:
         go-version: ${{ matrix.go }}
-    - name: Install coverage merging tool
-      run: go install github.com/wadey/gocovmerge@latest
     - name: Start Postgres # TODO: Come back and get rid of the sleep with a health check
       run: |
-        docker-compose up -d
+        docker compose up -d
         sleep 15
     - name: Seed DB
       env:
@@ -36,14 +34,16 @@ jobs:
     - name: Run Tests
       run: make test
     - name: Upload Coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v5
+      with:
+        files: ./coverage.txt,./integration-coverage.txt
 
   docker-build:
     name: Docker Build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - run: docker build -t pg-dba .
 
   docs:
@@ -51,6 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - run: make docs
       working-directory: docs
